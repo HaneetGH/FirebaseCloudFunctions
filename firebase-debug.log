@@ -1,0 +1,54 @@
+[debug] [2022-03-09T18:28:10.495Z] ----------------------------------------------------------------------
+[debug] [2022-03-09T18:28:10.496Z] Command:       /usr/local/bin/node /usr/local/bin/firebase functions:shell
+[debug] [2022-03-09T18:28:10.497Z] CLI Version:   10.2.2
+[debug] [2022-03-09T18:28:10.497Z] Platform:      darwin
+[debug] [2022-03-09T18:28:10.497Z] Node Version:  v16.14.0
+[debug] [2022-03-09T18:28:10.501Z] Time:          Wed Mar 09 2022 23:58:10 GMT+0530 (India Standard Time)
+[debug] [2022-03-09T18:28:10.501Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-09T18:28:10.550Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-09T18:28:10.550Z] > authorizing via signed-in user (technorapper@gmail.com)
+[debug] [2022-03-09T18:28:10.550Z] [iam] checking project healthscore-4fcdf for permissions ["firebase.projects.get"]
+[debug] [2022-03-09T18:28:10.552Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthscore-4fcdf:testIamPermissions [none]
+[debug] [2022-03-09T18:28:10.552Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthscore-4fcdf:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-03-09T18:28:12.169Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthscore-4fcdf:testIamPermissions 200
+[debug] [2022-03-09T18:28:12.169Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthscore-4fcdf:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-03-09T18:28:12.192Z] [functions] Using node@16 from host.
+[debug] [2022-03-09T18:28:12.197Z] defaultcredentials: writing to file /Users/admin/.config/firebase/technorapper_gmail_com_application_default_credentials.json
+[debug] [2022-03-09T18:28:12.199Z] DEBUG: Setting GAC to /Users/admin/.config/firebase/technorapper_gmail_com_application_default_credentials.json
+[debug] [2022-03-09T18:28:12.200Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/healthscore-4fcdf/adminSdkConfig [none]
+[debug] [2022-03-09T18:28:12.833Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/healthscore-4fcdf/adminSdkConfig 200
+[debug] [2022-03-09T18:28:12.833Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/healthscore-4fcdf/adminSdkConfig {"projectId":"healthscore-4fcdf","databaseURL":"https://healthscore-4fcdf-default-rtdb.firebaseio.com","storageBucket":"healthscore-4fcdf.appspot.com","locationId":"asia-northeast2"}
+[debug] [2022-03-09T18:28:12.865Z] [functions] Watching "/Users/admin/functions" for Cloud Functions...
+[debug] [2022-03-09T18:28:12.871Z] Validating nodejs source
+[debug] [2022-03-09T18:28:14.111Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-03-09T18:28:14.111Z] Building nodejs source
+[debug] [2022-03-09T18:28:14.111Z] Analyzing nodejs backend spec
+[debug] [2022-03-09T18:28:14.247Z] [functions[us-central1-createTeamMember]] function ignored because the firestore emulator does not exist or is not running.
+[info] i  functions: Loaded functions: createTeamMember 
+[warn] ⚠  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub, storage 
