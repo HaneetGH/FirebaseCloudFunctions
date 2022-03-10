@@ -18,7 +18,7 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
-    const desk = {
+    const userModel = {
         useremail: req.query.useremail,
         profession: req.query.profession,
         userDOB: req.query.userDOB,
@@ -27,7 +27,7 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
         userName:req.query.userName
       };
     // Push the new message into Firestore using the Firebase Admin SDK.
-    const writeResult = await admin.firestore().collection('users').add(desk);
+    const writeResult = await admin.firestore().collection('users').add(userModel);
     // Send back a message that we've successfully written the message
     res.json({result: `Message with ID: ${writeResult.id} added.`});
   });
