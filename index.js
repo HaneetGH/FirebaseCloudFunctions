@@ -14,20 +14,36 @@ admin.initializeApp();
 
 // Take the text parameter passed to this HTTP endpoint and insert it into 
 // Firestore under the path /messages/:documentId/original
-exports.addMessage = functions.https.onRequest(async (req, res) => {
+exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
     const desk = {
-        height: "4 feet",
-        weight: "30 pounds",
-        color: "brown",
-        material: "wood",
+        useremail: req.query.useremail,
+        profession: req.query.profession,
+        userDOB: req.query.userDOB,
+        userID: req.query.userID,
+        userLocation:req.query.userLocation,
+        userName:req.query.userName
       };
     // Push the new message into Firestore using the Firebase Admin SDK.
-    const writeResult = await admin.firestore().collection('messages').add(desk);
+    const writeResult = await admin.firestore().collection('users').add(desk);
     // Send back a message that we've successfully written the message
     res.json({result: `Message with ID: ${writeResult.id} added.`});
+  });
+
+
+
+  exports.getAllUsers = functions.https.onRequest(async (req, res) => {
+    // Grab the text parameter.
+   // const original = req.query.text;
+
+   
+  var writeResult =await db.collection("users").get().then((querySnapshot) => {
+    res.json({result: querySnapshot});
+});
+res.json({result: `Message with ID: ${writeResult} added.`});
+    
   });
 
   // Listens for new messages added to /messages/:documentId/original and creates an
