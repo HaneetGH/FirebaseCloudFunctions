@@ -1,8 +1,9 @@
 const functions = require("firebase-functions");
-const mFirebase = require("firebase/app");
-// The Firebase Admin SDK to access Firestore.
+// Firebase App (the core Firebase SDK) is always required and
+// must be listed before other Firebase SDKs
 const admin = require('firebase-admin');
-
+const firebase = require("firebase/app");
+const mfirebase = require("firebase");
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -11,18 +12,18 @@ const admin = require('firebase-admin');
 //   response.send("Hello from Firebase!");
 // });
 
-admin.initializeApp();
+var thisNeed=admin.initializeApp();
 
 // Take the text parameter passed to this HTTP endpoint and insert it into 
 // Firestore under the path /messages/:documentId/original
 exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
-   mFirebase.auth().signInWithCustomToken(res.token)
+   thisNeed.auth().getUserByPhoneNumber(res.token)
    .then((userCredential) => {
      // Signed in
      var userCheck = userCredential.user;
-
+     
      const userModel = {
       useremail: req.query.useremail,
       profession: req.query.profession,
