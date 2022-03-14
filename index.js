@@ -1,7 +1,8 @@
 const functions = require("firebase-functions");
+const mFirebase = require("firebase/app");
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
-//const config = require('config.js');
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -17,19 +18,31 @@ admin.initializeApp();
 exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
+   mFirebase.auth().signInWithCustomToken(res.token)
+   .then((userCredential) => {
+     // Signed in
+     var userCheck = userCredential.user;
 
-    const userModel = {
-        useremail: req.query.useremail,
-        profession: req.query.profession,
-        userDOB: req.query.userDOB,
-        userID: req.query.userID,
-        userLocation:req.query.userLocation,
-        userName:req.query.userName
-      };
-    // Push the new message into Firestore using the Firebase Admin SDK.
-    const writeResult = await admin.firestore().collection('users').add(userModel);
-    // Send back a message that we've successfully written the message
-    res.json({result: `Message with ID: ${writeResult.id} added.`});
+     const userModel = {
+      useremail: req.query.useremail,
+      profession: req.query.profession,
+      userDOB: req.query.userDOB,
+      userID: req.query.userID,
+      userLocation:req.query.userLocation,
+      userName:req.query.userName
+    };
+  // Push the new message into Firestore using the Firebase Admin SDK.
+  const writeResult =  admin.firestore().collection('users').add(userModel);
+  // Send back a message that we've successfully written the message
+  res.json({result: `Message with ID: ${writeResult.id} added.`});
+
+     // ...
+   })
+   .catch((error) => {
+     var errorCode = error.code;
+     var errorMessage = error.message;
+     // ...
+   });
   });
 
 
