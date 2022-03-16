@@ -59,7 +59,7 @@ s
     admin.auth()
   .createCustomToken(req.query.uid)
   .then((customToken) => {
-    res.json({result: querySnapshot});
+    res.json({result: customToken});
   })
   .catch((error) => {
     console.log('Error creating custom token:', error);
