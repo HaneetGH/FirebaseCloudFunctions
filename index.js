@@ -1,9 +1,10 @@
 const functions = require("firebase-functions");
-// Firebase App (the core Firebase SDK) is always required and
-// must be listed before other Firebase SDKs
+// const fetch = require('fetch');
+// The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
-const firebase = require("firebase/app");
-const mfirebase = require("firebase");
+const authFirebase = require("firebase/auth")
+var serviceAccount = require("./serviceAccountKey.json");
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -12,19 +13,25 @@ const mfirebase = require("firebase");
 //   response.send("Hello from Firebase!");
 // });
 
-var thisNeed=admin.initializeApp();
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://healthscore-4fcdf-default-rtdb.firebaseio.com"
+});
 
 // Take the text parameter passed to this HTTP endpoint and insert it into 
 // Firestore under the path /messages/:documentId/original
 exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
-   thisNeed.auth().getUserByPhoneNumber(res.token)
+s
+   
+   await authFirebase.signInWithCustomToken(req.query.token)
    .then((userCredential) => {
      // Signed in
-     var userCheck = userCredential.user;
-     
-     const userModel = {
+     var user = userCredential.user;
+     // ...
+        // const res = await fetch('https://google.com');
+    const userModel = {
       useremail: req.query.useremail,
       profession: req.query.profession,
       userDOB: req.query.userDOB,
@@ -36,14 +43,28 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
   const writeResult =  admin.firestore().collection('users').add(userModel);
   // Send back a message that we've successfully written the message
   res.json({result: `Message with ID: ${writeResult.id} added.`});
-
-     // ...
    })
    .catch((error) => {
      var errorCode = error.code;
      var errorMessage = error.message;
+     res.json({result: errorMessage});
      // ...
    });
+
+ 
+  });
+
+  exports.generateToken = functions.https.onRequest(async (req, res) => {
+
+    admin.auth()
+  .createCustomToken(req.query.uid)
+  .then((customToken) => {
+    res.json({result: customToken});
+  })
+  .catch((error) => {
+    console.log('Error creating custom token:', error);
+    res.json({result: error});
+  });
   });
 
 
