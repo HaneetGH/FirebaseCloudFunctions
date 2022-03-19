@@ -23,33 +23,26 @@ admin.initializeApp({
 exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
-s
-   
-   await authFirebase.signInWithCustomToken(req.query.token)
-   .then((userCredential) => {
-     // Signed in
-     var user = userCredential.user;
-     // ...
-        // const res = await fetch('https://google.com');
-    const userModel = {
-      useremail: req.query.useremail,
-      profession: req.query.profession,
-      userDOB: req.query.userDOB,
-      userID: req.query.userID,
-      userLocation:req.query.userLocation,
-      userName:req.query.userName
-    };
-  // Push the new message into Firestore using the Firebase Admin SDK.
-  const writeResult =  admin.firestore().collection('users').add(userModel);
-  // Send back a message that we've successfully written the message
-  res.json({result: `Message with ID: ${writeResult.id} added.`});
-   })
-   .catch((error) => {
-     var errorCode = error.code;
-     var errorMessage = error.message;
-     res.json({result: errorMessage});
-     // ...
-   });
+
+   var isUserExist = await this.isValidUser(req.query.idToken,req.query.uid);
+if(isUserExist.result){
+const userModel = {
+  useremail: req.query.useremail,
+  profession: req.query.profession,
+  userDOB: req.query.userDOB,
+  userID: req.query.userID,
+  userLocation:req.query.userLocation,
+  userName:req.query.userName
+};
+// Push the new message into Firestore using the Firebase Admin SDK.
+const writeResult =  admin.firestore().collection('users').add(userModel);
+// Send back a message that we've successfully written the message
+res.json({result: `Message with ID: ${writeResult.id} added.`});
+}
+else{
+  res.json({result: `Session expire`});
+}
+
 
  
   });
@@ -66,6 +59,30 @@ s
     res.json({result: error});
   });
   });
+
+  exports.isValidUser = functions.https.onRequest(async (req, res) => {
+
+    
+// idToken comes from the client app
+admin.auth()
+  .verifyIdToken(req.idToken)
+  .then((decodedToken) => {
+    const uid = decodedToken.uid;
+    if(uid == req.query.uid)
+    {
+      res.json({result: true});
+    }
+    else{
+      res.json({result: false});
+    }
+    // ...
+  })
+  .catch((error) => {
+    // Handle error
+  });
+
+  });
+
 
 
 
