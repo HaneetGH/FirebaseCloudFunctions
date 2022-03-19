@@ -1,0 +1,181 @@
+[debug] [2022-03-19T20:42:13.659Z] ----------------------------------------------------------------------
+[debug] [2022-03-19T20:42:13.661Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start
+[debug] [2022-03-19T20:42:13.661Z] CLI Version:   10.3.0
+[debug] [2022-03-19T20:42:13.661Z] Platform:      darwin
+[debug] [2022-03-19T20:42:13.661Z] Node Version:  v16.14.0
+[debug] [2022-03-19T20:42:13.662Z] Time:          Sun Mar 20 2022 02:12:13 GMT+0530 (India Standard Time)
+[debug] [2022-03-19T20:42:13.662Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-19T20:42:13.706Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-19T20:42:13.707Z] > authorizing via signed-in user (technorapper@gmail.com)
+[info] i  emulators: Starting emulators: functions, firestore {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, firestore"}}
+[debug] [2022-03-19T20:42:13.729Z] [hub] writing locator at /var/folders/vk/28shpjdn0fz564svsjlbnnn40000gn/T/hub-healthscore-4fcdf.json
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, database, hosting, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, database, hosting, pubsub, storage\u001b[22m"}}
+[info] ✔  functions: Using node@16 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@16 from host."}}
+[debug] [2022-03-19T20:42:13.743Z] defaultcredentials: writing to file /Users/admin/.config/firebase/technorapper_gmail_com_application_default_credentials.json
+[debug] [2022-03-19T20:42:13.744Z] Setting GAC to /Users/admin/.config/firebase/technorapper_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/admin/.config/firebase/technorapper_gmail_com_application_default_credentials.json"}}
+[debug] [2022-03-19T20:42:13.747Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/healthscore-4fcdf/adminSdkConfig [none]
+[debug] [2022-03-19T20:42:14.596Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/healthscore-4fcdf/adminSdkConfig 200
+[debug] [2022-03-19T20:42:14.596Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/healthscore-4fcdf/adminSdkConfig {"projectId":"healthscore-4fcdf","databaseURL":"https://healthscore-4fcdf-default-rtdb.firebaseio.com","storageBucket":"healthscore-4fcdf.appspot.com","locationId":"asia-northeast2"}
+[debug] [2022-03-19T20:42:14.631Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2022-03-19T20:42:14.632Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-03-19T20:42:14.632Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/admin/.cache/firebase/emulators/cloud-firestore-emulator-v1.13.1.jar","--host","localhost","--port",8080,"--rules","/Users/admin/firestore.rules","--functions_emulator","localhost:5001"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/admin/.cache/firebase/emulators/cloud-firestore-emulator-v1.13.1.jar\",\"--host\",\"localhost\",\"--port\",8080,\"--rules\",\"/Users/admin/firestore.rules\",\"--functions_emulator\",\"localhost:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"functions_emulator\",\"seed_from_export\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[debug] [2022-03-19T20:42:15.465Z] Mar 20, 2022 2:12:15 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+INFO: Started WebSocket server on ws://localhost:60099
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Mar 20, 2022 2:12:15 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://localhost:60099\n"}}
+[debug] [2022-03-19T20:42:15.485Z] API endpoint: http://localhost:8080 {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://localhost:8080"}}
+[debug] [2022-03-19T20:42:15.485Z] 
+If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
+
+   export FIRESTORE_EMULATOR_HOST=localhost:8080
+
+Dev App Server is now running.
+
+ {"metadata":{"emulator":{"name":"firestore"},"message":"\nIf you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\n\n   export FIRESTORE_EMULATOR_HOST=localhost:8080\n\nDev App Server is now running.\n\n"}}
+[warn] ⚠  ui: Emulator UI unable to start on port 4000, starting on 4006 instead. {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI unable to start on port 4000, starting on 4006 instead."}}
+[debug] [2022-03-19T20:42:15.676Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-03-19T20:42:15.676Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-03-19T20:42:15.677Z] Starting Emulator UI with command {"binary":"node","args":["/Users/admin/.cache/firebase/emulators/ui-v1.6.5/server.bundle.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/admin/.cache/firebase/emulators/ui-v1.6.5/server.bundle.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2022-03-19T20:42:15.776Z] Web / API server started at localhost:4006
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at localhost:4006\n"}}
+[info] i  functions: Watching "/Users/admin/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/admin/functions\" for Cloud Functions..."}}
+[debug] [2022-03-19T20:42:15.944Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-03-19T20:42:18.153Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^9.6.8",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.17.7",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-03-19T20:42:18.154Z] Building nodejs source
+[debug] [2022-03-19T20:42:18.154Z] Analyzing nodejs backend spec
+[info] ✔  functions[us-central1-addusers]: http function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/addusers). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/addusers)."}}
+[info] ✔  functions[us-central1-generateToken]: http function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/generateToken). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/generateToken)."}}
+[info] ✔  functions[us-central1-isValidUser]: http function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/isValidUser). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/isValidUser)."}}
+[info] ✔  functions[us-central1-getAllUsers]: http function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/getAllUsers). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5001/healthscore-4fcdf/us-central1/getAllUsers)."}}
+[debug] [2022-03-19T20:42:18.386Z] addFirestoreTrigger "{\"eventTrigger\":{\"eventType\":\"providers/cloud.firestore/eventTypes/document.create\",\"resource\":\"projects/healthscore-4fcdf/databases/(default)/documents/messages/{documentId}\",\"service\":\"firestore.googleapis.com\"}}"
+[debug] [2022-03-19T20:42:18.387Z] >>> HTTP REQUEST PUT http://localhost:8080/emulator/v1/projects/healthscore-4fcdf/triggers/us-central1-makeUppercase-0  
+ {"eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.create","resource":"projects/healthscore-4fcdf/databases/(default)/documents/messages/{documentId}","service":"firestore.googleapis.com"}}
+[debug] [2022-03-19T20:42:18.401Z] Mar 20, 2022 2:12:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Mar 20, 2022 2:12:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-03-19T20:42:18.536Z] Mar 20, 2022 2:12:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Mar 20, 2022 2:12:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected HTTP/2 connection.\n"}}
+[debug] [2022-03-19T20:42:18.940Z] <<< HTTP RESPONSE 200 {"content-type":"application/json","content-length":"4"}
+[info] ✔  functions[us-central1-makeUppercase]: firestore function initialized. {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mfirestore\u001b[22m function initialized."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://localhost:4006                │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ localhost:5001 │ http://localhost:4006/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Firestore │ localhost:8080 │ http://localhost:4006/firestore │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2022-03-19T20:42:21.611Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-03-19T20:42:21.612Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-03-19T20:42:21.612Z] Accepted request POST /healthscore-4fcdf/us-central1/addusers?useremail=nokia@test.ciommmm&profession=nokiaPrommmm&userDOB=nokiaDOBmmmm&userID=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1&userLocation=nokiaLocammm&userName=nokiaingmmm&idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaGVhbHRoc2NvcmUtNGZjZGYiLCJhdWQiOiJoZWFsdGhzY29yZS00ZmNkZiIsImF1dGhfdGltZSI6MTY0NzcxOTkyMiwidXNlcl9pZCI6ImhRM3RkeUZmUldkU1JVRDNqU1RtUG82SnBIdTEiLCJzdWIiOiJoUTN0ZHlGZlJXZFNSVUQzalNUbVBvNkpwSHUxIiwiaWF0IjoxNjQ3NzE5OTIzLCJleHAiOjE2NDc3MjM1MjMsInBob25lX251bWJlciI6Iis5MTkwNDE0MjI2NTIiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTkwNDE0MjI2NTIiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.AnW3UAjGUxVhNJHOrgJ0V5KECk3Y_eguB15ANru2Jihd9Vj3LcJCZOejaw9Bp4301oVC0LallZK3OAWYwmdPkkgueJejJ3_0wJtT6BNx-hOs8ST4iBfFMHJlpN62z11JsmJITJCnQnd9mqsvvixkiXWKU12_40zHKnUx9Lwe8EsVmdWNnule1TBO5D66PPh-2O2alsOZIN3qtx9RD7Pn1HybHgT1HwKa_dNASFKdsI08Bb56TcLxGWMif27lZXJignS7WQRb2OMeFFQYYzNEFPoGPQi96EGSuFCLxhYYIFvWWxs106jS7rl-XGELHbRKxbhP_6pxCcgGxEeerc-Wow&uid=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1 --> us-central1-addusers
+[debug] [2022-03-19T20:42:21.620Z] [worker-pool] addWorker(us-central1-addusers) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-addusers)"}}
+[debug] [2022-03-19T20:42:21.621Z] [worker-pool] Adding worker with key us-central1-addusers, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-addusers, total=1"}}
+[debug] [2022-03-19T20:42:21.621Z] [worker-pool] submitWork(triggerId=us-central1-addusers) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitWork(triggerId=us-central1-addusers)"}}
+[debug] [2022-03-19T20:42:21.621Z] [worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: Assigning socketPath: /var/folders/vk/28shpjdn0fz564svsjlbnnn40000gn/T/fire_emu_17321.sock {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: Assigning socketPath: /var/folders/vk/28shpjdn0fz564svsjlbnnn40000gn/T/fire_emu_17321.sock"}}
+[debug] [2022-03-19T20:42:21.622Z] [worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: BUSY"}}
+[debug] [2022-03-19T20:42:22.207Z] [runtime-status] [17321] Functions runtime initialized. {"cwd":"/Users/admin/functions","node_version":"16.14.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Functions runtime initialized. {\"cwd\":\"/Users/admin/functions\",\"node_version\":\"16.14.0\"}"}}
+[debug] [2022-03-19T20:42:22.208Z] [runtime-status] [17321] Disabled runtime features: undefined {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Disabled runtime features: undefined"}}
+[debug] [2022-03-19T20:42:22.209Z] [runtime-status] [17321] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.2","resolution":"/Users/admin/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"10.0.2\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2022-03-19T20:42:22.210Z] [runtime-status] [17321] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.1","resolution":"/Users/admin/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.1\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-03-19T20:42:22.211Z] [runtime-status] [17321] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2022-03-19T20:42:22.211Z] [runtime-status] [17321] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.1","resolution":"/Users/admin/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.1\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-03-19T20:42:22.238Z] [runtime-status] [17321] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Checked functions.config() {\"config\":{}}"}}
+[debug] [2022-03-19T20:42:22.238Z] [runtime-status] [17321] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.18.1","resolution":"/Users/admin/functions/node_modules/firebase-functions/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"3.18.1\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-functions/lib/index.js\"}}"}}
+[debug] [2022-03-19T20:42:22.238Z] [runtime-status] [17321] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.1","resolution":"/Users/admin/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.1\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-03-19T20:42:22.239Z] [runtime-status] [17321] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.2","resolution":"/Users/admin/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"10.0.2\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2022-03-19T20:42:22.240Z] [runtime-status] [17321] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.1","resolution":"/Users/admin/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.1\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-03-19T20:42:22.240Z] [runtime-status] [17321] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.2","resolution":"/Users/admin/functions/node_modules/firebase-admin/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"10.0.2\",\"resolution\":\"/Users/admin/functions/node_modules/firebase-admin/lib/index.js\"}}"}}
+[debug] [2022-03-19T20:42:22.290Z] [runtime-status] [17321] initializeApp(DEFAULT) {"apiKey":"AIzaSyB1zkafcglGkRlsds47H10CIwSsKtnjsqE","authDomain":"healthscore-4fcdf.firebaseapp.com","databaseURL":"https://healthscore-4fcdf-default-rtdb.firebaseio.com","projectId":"healthscore-4fcdf","storageBucket":"healthscore-4fcdf.appspot.com","messagingSenderId":"959287164059","appId":"1:959287164059:android:99fbe625426c70e8559a3e","credential":{"implicit":false,"projectId":"healthscore-4fcdf","privateKey":"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCbmCLe4h0pWHdY\nj+4yeYyNHiqOiCYi5y0Mx4bgDLVHrO5kYMvprXbIkSg1cr25ccUuKPXxbo6u8qPU\ngPGU7L9M/NTFNT56MAUzkn71JdQBcaU//X0efnNLsdqn6TP4t+5Kqgln+bzVXFP8\n74SnK4YZBzddCfiQ4tdUCE/caakHgGisEilKOEh/ts5jvimqHvAXt/AIlFgRAyRm\nJN9IRW7BlbmoCu/6duTHzLGe7UjKWG4XjSZ5rFrRcALqrWMjo4ttXalER7doIs0G\nhwfMQh0vI9TRzoBDN+B0sad9JV4H+xYcfUjTSvbYDFpOJfxVQ84b4qaeOKEawVvJ\nDkdCjTc5AgMBAAECggEAF0fmP885acxQ3zF6BJdnTl4rI/R/ME3C0dyw86kzHqxj\nZyWMnURVN6FwkL7AYJUDWerLEfrm4opvtQYuH4hk/1H9TByxYnr47ESJNokYdbbZ\ncP+uzvdArRzJiMI+AoMS5p0WlzYo6QvNjVURVioPAIOx5vvs81DdwzcTK/mrTvHN\n2WfC0zR3czX0OeSZKW1cGA+uOyBEjhMMVVQx/qzJcnRKfmaVX2i/Wk3QUkpNq5w/\nDU4kYS52fp+VeCHGyFBIuvLbIRsiY8lutFRW6pwOQWbpUvAeEVkiGXfmctFDMuYi\nLOoWubqD0N2HMmpXPgsk0VZVJQm8VDrFnlaykxf7WQKBgQDV3J0OjcZm+eQ45mUB\n22JzHzRvNGGphQa3GGzD++/CNBQYcaKJJRf0AO+iaJQgB02berFnmZfYGmKjYQRE\nrxDbFcTZKa7qCdtENzhK6Fr0lB368sRULEr7ndyQ5QGdzoEufANPEZ3MUDA6CNSH\n3uQpivJ47W2qF9/JQqOZ8T6PvwKBgQC6QHTWXToZtlgODaSuGTsDOa5qJb3WbbaA\n0kYkudtjXrr8q+k3h1ySMRYcoNiqCxkp+gb8c7dfBndPkWhnPOLcU1OGOT0ugzLY\nY3Xq0BbBFNt8x475xS5HZsiPL/t+iVPC5ND4xO73YNJcUS6+BTfVh4KEzFaZSjo7\n3/QhPFr3BwKBgBOgARGa1QASIm1ORyqadThXPrqNtgCWYn1e0mxRrDjICqgLlXy8\nWKxdgaAHtMATq31/DtSQ9awxD6gqePfMkOFp5/x9pL15VhO2dYX6OI6FIRMsP/Px\ndJgObnUlbraKgrQ/URZqaW6cVTCeKtKlE470XzfVoeCf/Ds90EGKL9GFAoGAQBpH\nHDBh+s+DZvLTJwiQAwArQ2VR/SctlRDKC4HcPEsyWBxi3DW+aqJyVdAWQhAnzQa8\nuM6q4g27qqsFH+MYwXP8X0n8ALIvIcK5puOPsUyYbk3Qq65tyy1ZAc8l49sn9QAD\n3FsLVCECxbs7NzNckCVfio05kPC3MjxWLco0FKkCgYBvMnCvRsvAY9vUuVSj0yL4\nTAdMM5yUwpA1ppxfxDOWHyUC8myVEsCiwp6UYoAtXwNHaxDFM8EzWIcOHXVPZtFG\nIgD6wPdsdHLk5i1eyK3RGE9z/zZSs7jg9rlVYF+GXQodQzMEzYDsbVezooCwh2PN\nF3qgoYcKa4M2eg6sFfb4rA==\n-----END PRIVATE KEY-----\n","clientEmail":"firebase-adminsdk-qhmg3@healthscore-4fcdf.iam.gserviceaccount.com","httpClient":{"retry":{"maxRetries":4,"statusCodes":[503],"ioErrorCodes":["ECONNRESET","ETIMEDOUT"],"backOffFactor":0.5,"maxDelayInMillis":60000}}}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] initializeApp(DEFAULT) {\"apiKey\":\"AIzaSyB1zkafcglGkRlsds47H10CIwSsKtnjsqE\",\"authDomain\":\"healthscore-4fcdf.firebaseapp.com\",\"databaseURL\":\"https://healthscore-4fcdf-default-rtdb.firebaseio.com\",\"projectId\":\"healthscore-4fcdf\",\"storageBucket\":\"healthscore-4fcdf.appspot.com\",\"messagingSenderId\":\"959287164059\",\"appId\":\"1:959287164059:android:99fbe625426c70e8559a3e\",\"credential\":{\"implicit\":false,\"projectId\":\"healthscore-4fcdf\",\"privateKey\":\"-----BEGIN PRIVATE KEY-----\\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCbmCLe4h0pWHdY\\nj+4yeYyNHiqOiCYi5y0Mx4bgDLVHrO5kYMvprXbIkSg1cr25ccUuKPXxbo6u8qPU\\ngPGU7L9M/NTFNT56MAUzkn71JdQBcaU//X0efnNLsdqn6TP4t+5Kqgln+bzVXFP8\\n74SnK4YZBzddCfiQ4tdUCE/caakHgGisEilKOEh/ts5jvimqHvAXt/AIlFgRAyRm\\nJN9IRW7BlbmoCu/6duTHzLGe7UjKWG4XjSZ5rFrRcALqrWMjo4ttXalER7doIs0G\\nhwfMQh0vI9TRzoBDN+B0sad9JV4H+xYcfUjTSvbYDFpOJfxVQ84b4qaeOKEawVvJ\\nDkdCjTc5AgMBAAECggEAF0fmP885acxQ3zF6BJdnTl4rI/R/ME3C0dyw86kzHqxj\\nZyWMnURVN6FwkL7AYJUDWerLEfrm4opvtQYuH4hk/1H9TByxYnr47ESJNokYdbbZ\\ncP+uzvdArRzJiMI+AoMS5p0WlzYo6QvNjVURVioPAIOx5vvs81DdwzcTK/mrTvHN\\n2WfC0zR3czX0OeSZKW1cGA+uOyBEjhMMVVQx/qzJcnRKfmaVX2i/Wk3QUkpNq5w/\\nDU4kYS52fp+VeCHGyFBIuvLbIRsiY8lutFRW6pwOQWbpUvAeEVkiGXfmctFDMuYi\\nLOoWubqD0N2HMmpXPgsk0VZVJQm8VDrFnlaykxf7WQKBgQDV3J0OjcZm+eQ45mUB\\n22JzHzRvNGGphQa3GGzD++/CNBQYcaKJJRf0AO+iaJQgB02berFnmZfYGmKjYQRE\\nrxDbFcTZKa7qCdtENzhK6Fr0lB368sRULEr7ndyQ5QGdzoEufANPEZ3MUDA6CNSH\\n3uQpivJ47W2qF9/JQqOZ8T6PvwKBgQC6QHTWXToZtlgODaSuGTsDOa5qJb3WbbaA\\n0kYkudtjXrr8q+k3h1ySMRYcoNiqCxkp+gb8c7dfBndPkWhnPOLcU1OGOT0ugzLY\\nY3Xq0BbBFNt8x475xS5HZsiPL/t+iVPC5ND4xO73YNJcUS6+BTfVh4KEzFaZSjo7\\n3/QhPFr3BwKBgBOgARGa1QASIm1ORyqadThXPrqNtgCWYn1e0mxRrDjICqgLlXy8\\nWKxdgaAHtMATq31/DtSQ9awxD6gqePfMkOFp5/x9pL15VhO2dYX6OI6FIRMsP/Px\\ndJgObnUlbraKgrQ/URZqaW6cVTCeKtKlE470XzfVoeCf/Ds90EGKL9GFAoGAQBpH\\nHDBh+s+DZvLTJwiQAwArQ2VR/SctlRDKC4HcPEsyWBxi3DW+aqJyVdAWQhAnzQa8\\nuM6q4g27qqsFH+MYwXP8X0n8ALIvIcK5puOPsUyYbk3Qq65tyy1ZAc8l49sn9QAD\\n3FsLVCECxbs7NzNckCVfio05kPC3MjxWLco0FKkCgYBvMnCvRsvAY9vUuVSj0yL4\\nTAdMM5yUwpA1ppxfxDOWHyUC8myVEsCiwp6UYoAtXwNHaxDFM8EzWIcOHXVPZtFG\\nIgD6wPdsdHLk5i1eyK3RGE9z/zZSs7jg9rlVYF+GXQodQzMEzYDsbVezooCwh2PN\\nF3qgoYcKa4M2eg6sFfb4rA==\\n-----END PRIVATE KEY-----\\n\",\"clientEmail\":\"firebase-adminsdk-qhmg3@healthscore-4fcdf.iam.gserviceaccount.com\",\"httpClient\":{\"retry\":{\"maxRetries\":4,\"statusCodes\":[503],\"ioErrorCodes\":[\"ECONNRESET\",\"ETIMEDOUT\"],\"backOffFactor\":0.5,\"maxDelayInMillis\":60000}}}}"}}
+[debug] [2022-03-19T20:42:22.291Z] [runtime-status] [17321] Beginning invocation function addusers! {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Beginning invocation function addusers!"}}
+[info] i  functions: Beginning execution of "addusers" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"Beginning execution of \"addusers\""}}
+[debug] [2022-03-19T20:42:22.291Z] [runtime-status] [17321] Running addusers in signature http {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Running addusers in signature http"}}
+[debug] [2022-03-19T20:42:22.294Z] [runtime-status] [17321] Attempting to listen to socketPath: /var/folders/vk/28shpjdn0fz564svsjlbnnn40000gn/T/fire_emu_17321.sock {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Attempting to listen to socketPath: /var/folders/vk/28shpjdn0fz564svsjlbnnn40000gn/T/fire_emu_17321.sock"}}
+[debug] [2022-03-19T20:42:22.297Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2022-03-19T20:42:22.298Z] [functions] Got req.url=/healthscore-4fcdf/us-central1/addusers?useremail=nokia@test.ciommmm&profession=nokiaPrommmm&userDOB=nokiaDOBmmmm&userID=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1&userLocation=nokiaLocammm&userName=nokiaingmmm&idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaGVhbHRoc2NvcmUtNGZjZGYiLCJhdWQiOiJoZWFsdGhzY29yZS00ZmNkZiIsImF1dGhfdGltZSI6MTY0NzcxOTkyMiwidXNlcl9pZCI6ImhRM3RkeUZmUldkU1JVRDNqU1RtUG82SnBIdTEiLCJzdWIiOiJoUTN0ZHlGZlJXZFNSVUQzalNUbVBvNkpwSHUxIiwiaWF0IjoxNjQ3NzE5OTIzLCJleHAiOjE2NDc3MjM1MjMsInBob25lX251bWJlciI6Iis5MTkwNDE0MjI2NTIiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTkwNDE0MjI2NTIiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.AnW3UAjGUxVhNJHOrgJ0V5KECk3Y_eguB15ANru2Jihd9Vj3LcJCZOejaw9Bp4301oVC0LallZK3OAWYwmdPkkgueJejJ3_0wJtT6BNx-hOs8ST4iBfFMHJlpN62z11JsmJITJCnQnd9mqsvvixkiXWKU12_40zHKnUx9Lwe8EsVmdWNnule1TBO5D66PPh-2O2alsOZIN3qtx9RD7Pn1HybHgT1HwKa_dNASFKdsI08Bb56TcLxGWMif27lZXJignS7WQRb2OMeFFQYYzNEFPoGPQi96EGSuFCLxhYYIFvWWxs106jS7rl-XGELHbRKxbhP_6pxCcgGxEeerc-Wow&uid=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1, mapping to path=/?useremail=nokia@test.ciommmm&profession=nokiaPrommmm&userDOB=nokiaDOBmmmm&userID=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1&userLocation=nokiaLocammm&userName=nokiaingmmm&idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaGVhbHRoc2NvcmUtNGZjZGYiLCJhdWQiOiJoZWFsdGhzY29yZS00ZmNkZiIsImF1dGhfdGltZSI6MTY0NzcxOTkyMiwidXNlcl9pZCI6ImhRM3RkeUZmUldkU1JVRDNqU1RtUG82SnBIdTEiLCJzdWIiOiJoUTN0ZHlGZlJXZFNSVUQzalNUbVBvNkpwSHUxIiwiaWF0IjoxNjQ3NzE5OTIzLCJleHAiOjE2NDc3MjM1MjMsInBob25lX251bWJlciI6Iis5MTkwNDE0MjI2NTIiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTkwNDE0MjI2NTIiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.AnW3UAjGUxVhNJHOrgJ0V5KECk3Y_eguB15ANru2Jihd9Vj3LcJCZOejaw9Bp4301oVC0LallZK3OAWYwmdPkkgueJejJ3_0wJtT6BNx-hOs8ST4iBfFMHJlpN62z11JsmJITJCnQnd9mqsvvixkiXWKU12_40zHKnUx9Lwe8EsVmdWNnule1TBO5D66PPh-2O2alsOZIN3qtx9RD7Pn1HybHgT1HwKa_dNASFKdsI08Bb56TcLxGWMif27lZXJignS7WQRb2OMeFFQYYzNEFPoGPQi96EGSuFCLxhYYIFvWWxs106jS7rl-XGELHbRKxbhP_6pxCcgGxEeerc-Wow&uid=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1 {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/healthscore-4fcdf/us-central1/addusers?useremail=nokia@test.ciommmm&profession=nokiaPrommmm&userDOB=nokiaDOBmmmm&userID=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1&userLocation=nokiaLocammm&userName=nokiaingmmm&idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaGVhbHRoc2NvcmUtNGZjZGYiLCJhdWQiOiJoZWFsdGhzY29yZS00ZmNkZiIsImF1dGhfdGltZSI6MTY0NzcxOTkyMiwidXNlcl9pZCI6ImhRM3RkeUZmUldkU1JVRDNqU1RtUG82SnBIdTEiLCJzdWIiOiJoUTN0ZHlGZlJXZFNSVUQzalNUbVBvNkpwSHUxIiwiaWF0IjoxNjQ3NzE5OTIzLCJleHAiOjE2NDc3MjM1MjMsInBob25lX251bWJlciI6Iis5MTkwNDE0MjI2NTIiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTkwNDE0MjI2NTIiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.AnW3UAjGUxVhNJHOrgJ0V5KECk3Y_eguB15ANru2Jihd9Vj3LcJCZOejaw9Bp4301oVC0LallZK3OAWYwmdPkkgueJejJ3_0wJtT6BNx-hOs8ST4iBfFMHJlpN62z11JsmJITJCnQnd9mqsvvixkiXWKU12_40zHKnUx9Lwe8EsVmdWNnule1TBO5D66PPh-2O2alsOZIN3qtx9RD7Pn1HybHgT1HwKa_dNASFKdsI08Bb56TcLxGWMif27lZXJignS7WQRb2OMeFFQYYzNEFPoGPQi96EGSuFCLxhYYIFvWWxs106jS7rl-XGELHbRKxbhP_6pxCcgGxEeerc-Wow&uid=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1, mapping to path=/?useremail=nokia@test.ciommmm&profession=nokiaPrommmm&userDOB=nokiaDOBmmmm&userID=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1&userLocation=nokiaLocammm&userName=nokiaingmmm&idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaGVhbHRoc2NvcmUtNGZjZGYiLCJhdWQiOiJoZWFsdGhzY29yZS00ZmNkZiIsImF1dGhfdGltZSI6MTY0NzcxOTkyMiwidXNlcl9pZCI6ImhRM3RkeUZmUldkU1JVRDNqU1RtUG82SnBIdTEiLCJzdWIiOiJoUTN0ZHlGZlJXZFNSVUQzalNUbVBvNkpwSHUxIiwiaWF0IjoxNjQ3NzE5OTIzLCJleHAiOjE2NDc3MjM1MjMsInBob25lX251bWJlciI6Iis5MTkwNDE0MjI2NTIiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTkwNDE0MjI2NTIiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.AnW3UAjGUxVhNJHOrgJ0V5KECk3Y_eguB15ANru2Jihd9Vj3LcJCZOejaw9Bp4301oVC0LallZK3OAWYwmdPkkgueJejJ3_0wJtT6BNx-hOs8ST4iBfFMHJlpN62z11JsmJITJCnQnd9mqsvvixkiXWKU12_40zHKnUx9Lwe8EsVmdWNnule1TBO5D66PPh-2O2alsOZIN3qtx9RD7Pn1HybHgT1HwKa_dNASFKdsI08Bb56TcLxGWMif27lZXJignS7WQRb2OMeFFQYYzNEFPoGPQi96EGSuFCLxhYYIFvWWxs106jS7rl-XGELHbRKxbhP_6pxCcgGxEeerc-Wow&uid=hQ3tdyFfRWdSRUD3jSTmPo6JpHu1"}}
+[debug] [2022-03-19T20:42:22.315Z] [runtime-status] [17321] Ephemeral server handling POST request {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Ephemeral server handling POST request"}}
+[warn] ⚠  functions: The Firebase Authentication emulator is not running, so calls to Firebase Authentication will affect production. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"The Firebase Authentication emulator is not running, so calls to Firebase Authentication will affect production."}}
+[debug] [2022-03-19T20:42:23.075Z] Mar 20, 2022 2:12:23 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Mar 20, 2022 2:12:23 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected HTTP/2 connection.\n"}}
+[debug] [2022-03-19T20:42:23.223Z] [runtime-status] [17321] Ephemeral server survived. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"[runtime-status] [17321] Ephemeral server survived."}}
+[info] i  functions: Finished "addusers" in ~1s {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-addusers"},"extension":{},"message":"Finished \"addusers\" in ~1s"}}
+[debug] [2022-03-19T20:42:23.224Z] [worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: IDLE"}}
+[debug] [2022-03-19T20:42:23.224Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2022-03-19T20:42:49.083Z] File /Users/admin/functions/index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/admin/functions/index.js changed, reloading triggers"}}
+[debug] [2022-03-19T20:42:50.083Z] [worker-pool] Shutting down IDLE worker (us-central1-addusers) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Shutting down IDLE worker (us-central1-addusers)"}}
+[debug] [2022-03-19T20:42:50.084Z] [worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: FINISHING {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: FINISHING"}}
+[debug] [2022-03-19T20:42:50.085Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-03-19T20:42:51.096Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^9.6.8",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.17.7",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-03-19T20:42:51.096Z] Building nodejs source
+[debug] [2022-03-19T20:42:51.096Z] Analyzing nodejs backend spec
+[debug] [2022-03-19T20:42:51.103Z] [worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: exited {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: exited"}}
+[debug] [2022-03-19T20:42:51.103Z] [worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: FINISHED {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-addusers-38300723-2508-4af4-bb30-ede26a35f5bd]: FINISHED"}}
