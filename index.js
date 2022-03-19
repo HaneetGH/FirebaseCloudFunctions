@@ -13,10 +13,12 @@ var serviceAccount = require("./serviceAccountKey.json");
 //   response.send("Hello from Firebase!");
 // });
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://healthscore-4fcdf-default-rtdb.firebaseio.com"
-});
+//admin.initializeApp({
+//  credential: admin.credential.cert(serviceAccount),
+//  databaseURL: "https://healthscore-4fcdf-default-rtdb.firebaseio.com"
+//});
+
+admin.initializeApp(firebaseConfig)
 
 // Take the text parameter passed to this HTTP endpoint and insert it into 
 // Firestore under the path /messages/:documentId/original
@@ -24,24 +26,41 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
-   var isUserExist = await this.isValidUser(req.query.idToken,req.query.uid);
-if(isUserExist.result){
-const userModel = {
-  useremail: req.query.useremail,
-  profession: req.query.profession,
-  userDOB: req.query.userDOB,
-  userID: req.query.userID,
-  userLocation:req.query.userLocation,
-  userName:req.query.userName
-};
-// Push the new message into Firestore using the Firebase Admin SDK.
-const writeResult =  admin.firestore().collection('users').add(userModel);
-// Send back a message that we've successfully written the message
-res.json({result: `Message with ID: ${writeResult.id} added.`});
-}
-else{
-  res.json({result: `Session expire`});
-}
+  // var isUserExist = await this.isValidUser(req.query.idToken,req.query.uid);
+
+  // idToken comes from the client app
+await admin.auth()
+  .verifyIdToken(req.query.idToken)
+  .then((decodedToken) => {
+    const uid = decodedToken.uid;
+    if(uid == req.query.uid)
+    {
+      const userModel = {
+        useremail: req.query.useremail,
+        profession: req.query.profession,
+        userDOB: req.query.userDOB,
+        userID: req.query.userID,
+        userLocation:req.query.userLocation,
+        userName:req.query.userName
+      };
+      // Push the new message into Firestore using the Firebase Admin SDK.
+      const writeResult =  admin.firestore().collection('users').add(userModel);
+      // Send back a message that we've successfully written the message
+      res.json({result: `Message with ID: ${writeResult.id} added.`});
+    }
+    else{
+      res.json({result: false});
+    }
+    // ...
+  })
+  .catch((error) => {
+    res.json({result: error});
+  });
+
+
+
+
+
 
 
  
@@ -63,23 +82,7 @@ else{
   exports.isValidUser = functions.https.onRequest(async (req, res) => {
 
     
-// idToken comes from the client app
-admin.auth()
-  .verifyIdToken(req.idToken)
-  .then((decodedToken) => {
-    const uid = decodedToken.uid;
-    if(uid == req.query.uid)
-    {
-      res.json({result: true});
-    }
-    else{
-      res.json({result: false});
-    }
-    // ...
-  })
-  .catch((error) => {
-    // Handle error
-  });
+
 
   });
 
