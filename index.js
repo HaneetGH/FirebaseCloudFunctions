@@ -13,12 +13,12 @@ var serviceAccount = require("./serviceAccountKey.json");
 //   response.send("Hello from Firebase!");
 // });
 
-//admin.initializeApp({
- //credential: admin.credential.cert(serviceAccount),
- //////databaseURL: "https://healthscore-4fcdf-default-rtdb.firebaseio.com"
-//});
+admin.initializeApp({
+ credential: admin.credential.cert(serviceAccount),
+ databaseURL: "https://healthscore-4fcdf-default-rtdb.firebaseio.com"
+});
 
-admin.initializeApp()
+//admin.initializeApp()
 
 // Take the text parameter passed to this HTTP endpoint and insert it into 
 // Firestore under the path /messages/:documentId/original
@@ -26,11 +26,23 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
-  var isUserExist = await isValidUser(req);
+  
+ var isUserExist = await isValidUser(req).catch((error) => {
+  var response={
+    "status_message": "Fail",
+    "status_code":3,
+    "data": {
+      /* Application-specific data would go here. */
+    },
+    "message": "Fail due to "+error /* Or optional success message */
+  }
+  return res.json({result: response});
+});;
 
   // idToken comes from the client app
   if(isUserExist){
-  const userModel = {
+  
+    const userModel = {
     useremail: req.query.useremail,
     profession: req.query.profession,
     userDOB: req.query.userDOB,
@@ -41,10 +53,38 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
   // Push the new message into Firestore using the Firebase Admin SDK.
   const writeResult =  await admin.firestore().collection('users').add(userModel);
   // Send back a message that we've successfully written the message
-  return res.json({result: `Message with ID: ${writeResult.id} added.`});
+  var response={
+    "status_message": "Success",
+    "status_code":1,
+    "data": {
+      /* Application-specific data would go here. */
+    },
+    "message": "User with ID: "+writeResult.id+" added." /* Or optional success message */
   }
+  return res.json({result: response});
 
-  return res.json({result: `Fail`});
+  }
+  else if(!isUserExist){
+  var response={
+    "status_message": "Fail",
+    "status_code":2,
+    "data": {
+      /* Application-specific data would go here. */
+    },
+    "message": "Session expires " /* Or optional success message */
+  }
+  return res.json({result: response});}
+  else{
+    var response={
+      "status_message": "some fuck",
+      "status_code":4,
+      "data": {
+        /* Application-specific data would go here. */
+      },
+      "message": "Session expires " /* Or optional success message */
+    }
+    return res.json({result: response});
+  }
 
 
 
@@ -65,23 +105,24 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
   });
 
   const isValidUser = async (req) => {
-    console.log('bitches I am here', req);
-    await admin.auth()
+
+   let result = await admin.auth()
   .verifyIdToken(req.query.idToken)
   .then(async  (decodedToken) => {
     const uid = decodedToken.uid;
-    if(uid == req.query.uid)
-    {
-      return true
-    }
-    else{
-      return false
-    }
-    // ...
+  
+    if(uid == req.query.uid) {
+      return true }
+    else {
+      return false }
+    
+
   })
   .catch((error) => {
-    return false
+    return error
   });
+
+
   };
 
 
