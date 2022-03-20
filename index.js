@@ -26,42 +26,25 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
-  // var isUserExist = await this.isValidUser(req.query.idToken,req.query.uid);
+  var isUserExist = await isValidUser(req);
 
   // idToken comes from the client app
+  if(isUserExist){
+  const userModel = {
+    useremail: req.query.useremail,
+    profession: req.query.profession,
+    userDOB: req.query.userDOB,
+    userID: req.query.userID,
+    userLocation:req.query.userLocation,
+    userName:req.query.userName
+  };
+  // Push the new message into Firestore using the Firebase Admin SDK.
+  const writeResult =  await admin.firestore().collection('users').add(userModel);
+  // Send back a message that we've successfully written the message
+  return res.json({result: `Message with ID: ${writeResult.id} added.`});
+  }
 
-  
-await admin.auth()
-  .verifyIdToken(req.query.idToken)
-  .then(async  (decodedToken) => {
-    const uid = decodedToken.uid;
-    if(uid == req.query.uid)
-    {
-      const userModel = {
-        useremail: req.query.useremail,
-        profession: req.query.profession,
-        userDOB: req.query.userDOB,
-        userID: req.query.userID,
-        userLocation:req.query.userLocation,
-        userName:req.query.userName
-      };
-      // Push the new message into Firestore using the Firebase Admin SDK.
-      const writeResult =  await admin.firestore().collection('users').add(userModel);
-      // Send back a message that we've successfully written the message
-      res.json({result: `Message with ID: ${writeResult.id} added.`});
-    }
-    else{
-      res.json({result: false});
-    }
-    // ...
-  })
-  .catch((error) => {
-    res.json({result: error});
-  });
-
-
-
-
+  return res.json({result: `Fail`});
 
 
 
@@ -81,12 +64,25 @@ await admin.auth()
   });
   });
 
-  exports.isValidUser = functions.https.onRequest(async (req, res) => {
-
-    
-
-
+  const isValidUser = async (req) => {
+    console.log('bitches I am here', req);
+    await admin.auth()
+  .verifyIdToken(req.query.idToken)
+  .then(async  (decodedToken) => {
+    const uid = decodedToken.uid;
+    if(uid == req.query.uid)
+    {
+      return true
+    }
+    else{
+      return false
+    }
+    // ...
+  })
+  .catch((error) => {
+    return false
   });
+  };
 
 
 
