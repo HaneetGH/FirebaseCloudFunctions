@@ -3,8 +3,7 @@ const functions = require("firebase-functions");
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
 const authFirebase = require("firebase/auth")
-var serviceAccount = require("./serviceAccountKey.json");
-
+const mConfig = require("./config")
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -13,10 +12,7 @@ var serviceAccount = require("./serviceAccountKey.json");
 //   response.send("Hello from Firebase!");
 // });
 
-admin.initializeApp({
- credential: admin.credential.cert(serviceAccount),
- databaseURL: "https://healthscore-4fcdf-default-rtdb.firebaseio.com"
-});
+admin.initializeApp(mConfig.firebaseConfig);
 
 //admin.initializeApp()
 
@@ -38,8 +34,9 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
   }
   return res.json({result: response});
 });;
-
+//isUserExist=true;
   // idToken comes from the client app
+  
   if(isUserExist){
   
     const userModel = {
@@ -51,13 +48,36 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
     userName:req.query.userName
   };
   // Push the new message into Firestore using the Firebase Admin SDK.
-  const writeResult =  await admin.firestore().collection('users').add(userModel);
+  const writeResult =  await admin.firestore().collection('users').add(userModel).catch((error) => {
+    var response={
+      "status_message": "Fail",
+      "status_code":5,
+      "data": {
+        /* Application-specific data would go here. */
+      },
+      "message": "Fail due to "+error /* Or optional success message */
+    }
+    return res.json({result: response});
+  });;
+
+
+  const userDetail = await admin.firestore()
+  .collection("users")
+  .where("userID", "==", req.query.userID)
+  .get()
+  .then((querySnapshot) => {
+   return querySnapshot.docs
+    // Users with > 1 book:  [ { id: 'user-1', count: 1 } ]
+  });
+
+
+  
   // Send back a message that we've successfully written the message
   var response={
     "status_message": "Success",
     "status_code":1,
     "data": {
-      /* Application-specific data would go here. */
+    // userDetail:userDetail
     },
     "message": "User with ID: "+writeResult.id+" added." /* Or optional success message */
   }
@@ -121,7 +141,7 @@ exports.addusers = functions.https.onRequest(async (req, res) => {
   .catch((error) => {
     return error
   });
-
+return result
 
   };
 
