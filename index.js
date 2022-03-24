@@ -85,6 +85,8 @@ exports.addNpUsers = functions.https.onRequest(async (req, res) => {
   return res.json({result: response});
 
   }
+
+  
   else if(!isUserExist){
   var response={
     "status_message": "Fail",
