@@ -1,0 +1,21 @@
+const ERROR_CODE = {
+  SUCCESS: 1,
+  FAIL: 2,
+  EXCEPTION:3,
+  NOT_THAT_SUCCESS:4
+
+};
+
+const ERROR_MSG = {
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+  EXCEPTION: "SYSTEM EXCEPTION",
+  NOT_THAT_SUCCESS:"NOT_THAT_SUCCESS"
+};
+
+const DOCUMENTS ={
+  USERS:"users"
+}
+Object.freeze(ERROR_CODE)
+Object.freeze(ERROR_MSG)
+Object.freeze(DOCUMENTS)

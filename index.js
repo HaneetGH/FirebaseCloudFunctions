@@ -1,32 +1,118 @@
+const ERROR_CODE = {
+  SUCCESS: 1,
+  FAIL: 2,
+  EXCEPTION:3,
+  NOT_THAT_SUCCESS:4
+
+};
+
+const ERROR_MSG = {
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+  EXCEPTION: "SYSTEM EXCEPTION",
+  NOT_THAT_SUCCESS:"NOT_THAT_SUCCESS"
+};
+
+const DOCUMENTS ={
+  USERS:"natualPerson"
+}
+Object.freeze(ERROR_CODE)
+Object.freeze(ERROR_MSG)
+Object.freeze(DOCUMENTS)
+
 const functions = require("firebase-functions");
-// const fetch = require('fetch');
-// The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
 const authFirebase = require("firebase/auth")
 const mConfig = require("./config")
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-
+//const mConstants = require("./constants")
 admin.initializeApp(mConfig.firebaseConfig);
+const mUser = admin.firestore()
 
-//admin.initializeApp()
 
-// Take the text parameter passed to this HTTP endpoint and insert it into 
-// Firestore under the path /messages/:documentId/original
-exports.addNpUsers = functions.https.onRequest(async (req, res) => {
+  exports.isProfileThere = functions.https.onRequest(async (req, res) => {
+
+  var isUserExist = await isValidUser(req).catch((error) => {
+    var response={
+      "status_message": ERROR_MSG.EXCEPTION,
+      "status_code":ERROR_CODE.EXCEPTION,
+      "data": {
+        /* Application-specific data would go here. */
+      },
+      "message": "Fail due to "+error /* Or optional success message */
+    }
+    return res.json({result: response});
+  });;
+
+  if(isUserExist){
+    await mUser.collection(DOCUMENTS.USERS).doc(req.query.uid).get()
+    .then(async (docSnapshot) => {
+      if (docSnapshot.exists) {
+        var response={
+          "status_message": "Success",
+          "status_code":1,
+          "data": {
+        
+          },
+          "message": "User profile found " /* Or optional success message */
+        }
+        return res.json({result: response});
+      } else {
+        var response={
+          "status_message": ERROR_MSG.FAIL,
+          "status_code":ERROR_CODE.FAIL,
+          "data": {
+           data:docSnapshot
+          },
+          "message": "User profile not found " /* Or optional success message */
+        }
+        return res.json({result: response});
+      }
+  }).catch((error) => {
+    var response={
+      "status_message": ERROR_MSG.EXCEPTION,
+      "status_code":ERROR_CODE.EXCEPTION,
+      "data": {
+        /* Application-specific data would go here. */
+      },
+      "message": "Fail due to "+error /* Or optional success message */
+    }
+    return res.json({result: response});
+  });
+  }
+  else if(!isUserExist){
+    var response={
+      "status_message": ERROR_MSG.FAIL,
+      "status_code":ERROR_CODE.FAIL,
+      "data": {
+        /* Application-specific data would go here. */
+      },
+      "message": "User Not There" /* Or optional success message */
+    }
+    return res.json({result: response});}
+    else{
+      var response={
+        "status_message": "some fuck",
+        "status_code":4,
+        "data": {
+          /* Application-specific data would go here. */
+        },
+        "message": "Session expires " /* Or optional success message */
+      }
+      return res.json({result: response});
+    }
+ 
+
+   })
+
+  exports.addNpUsers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
   
  var isUserExist = await isValidUser(req).catch((error) => {
   var response={
-    "status_message": "Fail",
-    "status_code":3,
+    "status_message": ERROR_MSG.EXCEPTION,
+    "status_code":ERROR_CODE.EXCEPTION,
     "data": {
       /* Application-specific data would go here. */
     },
@@ -49,10 +135,10 @@ exports.addNpUsers = functions.https.onRequest(async (req, res) => {
     userType:"NP"
   };
   // Push the new message into Firestore using the Firebase Admin SDK.
-  const writeResult =  await admin.firestore().collection('natualPerson').doc("NP-"+req.query.userID).set(userModel).catch((error) => {
+  const writeResult =  mUser.collection(DOCUMENTS.USERS).doc(req.query.userID).set(userModel).catch((error) => {
     var response={
-      "status_message": "Fail",
-      "status_code":5,
+      "status_message": ERROR_MSG.EXCEPTION,
+      "status_code":ERROR_CODE.EXCEPTION,
       "data": {
         /* Application-specific data would go here. */
       },
@@ -62,8 +148,7 @@ exports.addNpUsers = functions.https.onRequest(async (req, res) => {
   });;
 
 
-  const userDetail = await admin.firestore()
-  .collection("users")
+  const userDetail = await mUser
   .where("userID", "==", req.query.userID)
   .get()
   .then((querySnapshot) => {
@@ -85,12 +170,10 @@ exports.addNpUsers = functions.https.onRequest(async (req, res) => {
   return res.json({result: response});
 
   }
-
-  
   else if(!isUserExist){
   var response={
-    "status_message": "Fail",
-    "status_code":2,
+    "status_message": ERROR_MSG.NOT_THAT_SUCCESS,
+    "status_code":ERROR_CODE.NOT_THAT_SUCCESS,
     "data": {
       /* Application-specific data would go here. */
     },
@@ -112,7 +195,7 @@ exports.addNpUsers = functions.https.onRequest(async (req, res) => {
 
 
  
-  });
+   });
 
   exports.generateToken = functions.https.onRequest(async (req, res) => {
 
@@ -122,10 +205,17 @@ exports.addNpUsers = functions.https.onRequest(async (req, res) => {
     res.json({result: customToken});
   })
   .catch((error) => {
-    console.log('Error creating custom token:', error);
-    res.json({result: error});
+    var response={
+      "status_message": ERROR_MSG.EXCEPTION,
+      "status_code":ERROR_CODE.EXCEPTION,
+      "data": {
+        /* Application-specific data would go here. */
+      },
+      "message": "Fail due to "+error /* Or optional success message */
+    }
+    res.json({result: response});
   });
-  });
+    });
 
   const isValidUser = async (req) => {
 
@@ -148,9 +238,6 @@ return result
 
   };
 
-
-
-
   exports.getAllUsers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
@@ -162,21 +249,3 @@ return result
 res.json({result: `Message with ID: ${writeResult} added.`});
     
   });
-
-  // Listens for new messages added to /messages/:documentId/original and creates an
-// uppercase version of the message to /messages/:documentId/uppercase
-exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
-    .onCreate((snap, context) => {
-      // Grab the current value of what was written to Firestore.
-      const original = snap.data().original;
-
-      // Access the parameter `{documentId}` with `context.params`
-      functions.logger.log('Uppercasing', context.params.documentId, original);
-      
-      const uppercase = original.toUpperCase();
-      
-      // You must return a Promise when performing asynchronous tasks inside a Functions such as
-      // writing to Firestore.
-      // Setting an 'uppercase' field in Firestore document returns a Promise.
-      return snap.ref.set({uppercase}, {merge: true});
-    });
