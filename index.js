@@ -16,6 +16,7 @@ const ERROR_MSG = {
 const DOCUMENTS ={
   USERS:"natualPerson"
 }
+
 Object.freeze(ERROR_CODE)
 Object.freeze(ERROR_MSG)
 Object.freeze(DOCUMENTS)
@@ -26,7 +27,7 @@ const authFirebase = require("firebase/auth")
 const mConfig = require("./config")
 //const mConstants = require("./constants")
 admin.initializeApp(mConfig.firebaseConfig);
-const mUser = admin.firestore()
+const dbConnection = admin.firestore()
 
 
   exports.isProfileThere = functions.https.onRequest(async (req, res) => {
@@ -44,7 +45,7 @@ const mUser = admin.firestore()
   });;
 
   if(isUserExist){
-    await mUser.collection(DOCUMENTS.USERS).doc(req.query.uid).get()
+    await dbConnection.collection(DOCUMENTS.USERS).doc(req.query.uid).get()
     .then(async (docSnapshot) => {
       if (docSnapshot.exists) {
         var response={
@@ -103,7 +104,7 @@ const mUser = admin.firestore()
  
 
    })
-
+//--------------------------------------------//
   exports.addNpUsers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
@@ -135,7 +136,7 @@ const mUser = admin.firestore()
     userType:"NP"
   };
   // Push the new message into Firestore using the Firebase Admin SDK.
-  const writeResult =  mUser.collection(DOCUMENTS.USERS).doc(req.query.userID).set(userModel).catch((error) => {
+  const writeResult =  dbConnection.collection(DOCUMENTS.USERS).doc(req.query.userID).set(userModel).catch((error) => {
     var response={
       "status_message": ERROR_MSG.EXCEPTION,
       "status_code":ERROR_CODE.EXCEPTION,
@@ -148,7 +149,7 @@ const mUser = admin.firestore()
   });;
 
 
-  const userDetail = await mUser
+  const userDetail = await dbConnection
   .where("userID", "==", req.query.userID)
   .get()
   .then((querySnapshot) => {
@@ -196,6 +197,71 @@ const mUser = admin.firestore()
 
  
    });
+
+
+//--------------------------------------------//
+exports.getAllLabs = functions.https.onRequest(async (req, res) => {
+  // Grab the text parameter.
+ // const original = req.query.text;
+
+
+var isUserExist = await isValidUser(req).catch((error) => {
+var response={
+  "status_message": ERROR_MSG.EXCEPTION,
+  "status_code":ERROR_CODE.EXCEPTION,
+  "data": {
+    /* Application-specific data would go here. */
+  },
+  "message": "Fail due to "+error /* Or optional success message */
+}
+return res.json({result: response});
+});;
+//isUserExist=true;
+// idToken comes from the client app
+
+if(isUserExist){
+
+  const snapshot = await dbConnection.collection("labsDetails").get();
+var labsDetails= snapshot.docs.map(doc => doc.data());
+// Send back a message that we've successfully written the message
+var response={
+  "status_message": "Success",
+  "status_code":1,
+  "data": {
+    labs:labsDetails
+  },
+  "message": "" /* Or optional success message */
+}
+return res.json({result: response});
+
+}
+else if(!isUserExist){
+var response={
+  "status_message": ERROR_MSG.NOT_THAT_SUCCESS,
+  "status_code":ERROR_CODE.NOT_THAT_SUCCESS,
+  "data": {
+    /* Application-specific data would go here. */
+  },
+  "message": "User Not Found " /* Or optional success message */
+}
+return res.json({result: response});}
+else{
+  var response={
+    "status_message": "some fuck",
+    "status_code":4,
+    "data": {
+      /* Application-specific data would go here. */
+    },
+    "message": "Session expires " /* Or optional success message */
+  }
+  return res.json({result: response});
+}
+
+
+
+
+ });
+
 
   exports.generateToken = functions.https.onRequest(async (req, res) => {
 
