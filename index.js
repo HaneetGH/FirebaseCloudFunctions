@@ -14,7 +14,8 @@ const ERROR_MSG = {
 };
 
 const DOCUMENTS ={
-  USERS:"natualPerson"
+  USERS:"natualPerson",
+  TEST:"labsTestMaster"
 }
 
 Object.freeze(ERROR_CODE)
@@ -104,7 +105,7 @@ const dbConnection = admin.firestore()
  
 
    })
-//--------------------------------------------//
+//-------------addNpUsers-------------------//
   exports.addNpUsers = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
@@ -315,3 +316,91 @@ return result
 res.json({result: `Message with ID: ${writeResult} added.`});
     
   });
+
+
+
+
+
+/************SendLabDetails************************* */
+exports.sendLabDetails = functions.https.onRequest(async (req, res) => {
+  // Grab the text parameter.
+ // const original = req.query.text;
+
+
+var isUserExist = await isValidUser(req).catch((error) => {
+var response={
+  "status_message": ERROR_MSG.EXCEPTION,
+  "status_code":ERROR_CODE.EXCEPTION,
+  "data": {
+    /* Application-specific data would go here. */
+  },
+  "message": "Fail due to "+error /* Or optional success message */
+}
+return res.json({result: response});
+});;
+//isUserExist=true;
+// idToken comes from the client app
+
+if(isUserExist){
+  const testModel = {
+  labId: req.query.labId,
+  testCatId: req.query.testCatId,
+  testID: req.query.testID,
+  testName:req.query.testName,
+  testPrice:req.query.testPrice,
+  testActive:req.query.testActive,
+  testRange:req.query.testRange
+};
+// Push the new message into Firestore using the Firebase Admin SDK.
+const writeResult =  dbConnection.collection(DOCUMENTS.TEST).doc(req.query.labId).collection(req.query.testCatId).doc(req.query.testID).set(testModel).catch((error) => {
+  var response={
+    "status_message": ERROR_MSG.EXCEPTION,
+    "status_code":ERROR_CODE.EXCEPTION,
+    "data": {
+      /* Application-specific data would go here. */
+    },
+    "message": "Fail due to "+error /* Or optional success message */
+  }
+  return res.json({result: response});
+});;
+
+
+// Send back a message that we've successfully written the message
+var response={
+  "status_message": "Success",
+  "status_code":1,
+  "data": {
+  // userDetail:userDetail
+  },
+  "message": "Lab added Successfully." /* Or optional success message */
+}
+return res.json({result: response});
+
+}
+else if(!isUserExist){
+var response={
+  "status_message": ERROR_MSG.NOT_THAT_SUCCESS,
+  "status_code":ERROR_CODE.NOT_THAT_SUCCESS,
+  "data": {
+    /* Application-specific data would go here. */
+  },
+  "message": "Session expires " /* Or optional success message */
+}
+return res.json({result: response});}
+else{
+  var response={
+    "status_message": "some fuck",
+    "status_code":4,
+    "data": {
+      /* Application-specific data would go here. */
+    },
+    "message": "Session expires " /* Or optional success message */
+  }
+  return res.json({result: response});
+}
+
+
+
+
+ });
+ /************SendLabDetails************************* */
