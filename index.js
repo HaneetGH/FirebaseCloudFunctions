@@ -21,7 +21,9 @@ const DOCUMENTS ={
 Object.freeze(ERROR_CODE)
 Object.freeze(ERROR_MSG)
 Object.freeze(DOCUMENTS)
+const express = require('express');
 
+const bodyParser = require("body-parser");
 const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 const authFirebase = require("firebase/auth")
@@ -30,8 +32,14 @@ const mConfig = require("./config")
 admin.initializeApp(mConfig.firebaseConfig);
 const dbConnection = admin.firestore()
 
+const app = express();
+const main = express();
+//add the path to receive request and set json as bodyParser to process the body 
+main.use('/v1', app);
+main.use(bodyParser.json());
+main.use(bodyParser.urlencoded({ extended: false }));
 
-  exports.isProfileThere = functions.https.onRequest(async (req, res) => {
+app.get('/isProfileThere', async (req, res) => {
 
   var isUserExist = await isValidUser(req).catch((error) => {
     var response={
@@ -106,7 +114,8 @@ const dbConnection = admin.firestore()
 
    })
 //-------------addNpUsers-------------------//
-  exports.addNpUsers = functions.https.onRequest(async (req, res) => {
+
+app.post('/addNpUsers', async(req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
@@ -201,7 +210,8 @@ const dbConnection = admin.firestore()
 
 
 //--------------------------------------------//
-exports.getAllLabs = functions.https.onRequest(async (req, res) => {
+
+app.get('/getAllLabs', async(req, res) => {
   // Grab the text parameter.
  // const original = req.query.text;
 
@@ -264,7 +274,7 @@ else{
  });
 
 
-  exports.generateToken = functions.https.onRequest(async (req, res) => {
+  app.get('/generateToken', async(req, res) => {
 
     admin.auth()
   .createCustomToken(req.query.uid)
@@ -304,8 +314,7 @@ else{
 return result
 
   };
-
-  exports.getAllUsers = functions.https.onRequest(async (req, res) => {
+    app.get('/getAllUsers', async (req, res) => {
     // Grab the text parameter.
    // const original = req.query.text;
 
@@ -322,7 +331,8 @@ res.json({result: `Message with ID: ${writeResult} added.`});
 
 
 /************SendLabDetails************************* */
-exports.sendLabDetails = functions.https.onRequest(async (req, res) => {
+
+app.get('/sendLabDetails', async(req, res) => {
   // Grab the text parameter.
  // const original = req.query.text;
 
@@ -404,3 +414,15 @@ else{
 
  });
  /************SendLabDetails************************* */
+
+
+
+ //app.disable("x-powered-by");
+
+ app.get('/yes', (req, res) => {
+  res.send('Hello World!')
+})
+// This line is important. What we are doing here is exporting ONE function with the name
+// `api` which will always route
+
+exports.api = functions.https.onRequest(main);
