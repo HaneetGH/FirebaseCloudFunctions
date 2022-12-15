@@ -302,26 +302,24 @@ else{
         service: 'gmail',
         auth: {
           user: 'haneettest@gmail.com',
-          pass: 'Haneet@Test123'
+          pass: 'ohummlmnedvgwkbb'
         }
       });
       
       var mailOptions = {
         from: 'haneettest@gmail.com',
-        to: 'haneet555@gmail.com',
+        to: req.query.email,
         subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        text: 'Your verification code is '+ req.query.code
       };
 
-      transporter.sendMail(mailOptions, function(error, info){
+     await transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           res.json({result: `Message with ID: ${error} added.`});
         } else {
           res.json({result: `True`});
         }
       });
-
-      res.json({result: `Done My Job`});
       });
 
   const isValidUser = async (req) => {
@@ -403,7 +401,6 @@ const writeResult =  dbConnection.collection(DOCUMENTS.TEST).doc(req.query.labId
   }
   return res.json({result: response});
 });;
-
 
 // Send back a message that we've successfully written the message
 var response={
