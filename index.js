@@ -24,8 +24,10 @@ Object.freeze(DOCUMENTS)
 const express = require('express');
 
 const bodyParser = require("body-parser");
+const nodemailer = require('nodemailer');
 const functions = require("firebase-functions");
 const admin = require('firebase-admin');
+const firebase = require("firebase/app")
 const authFirebase = require("firebase/auth")
 const mConfig = require("./config")
 //const mConstants = require("./constants")
@@ -294,6 +296,34 @@ else{
   });
     });
 
+    app.get('/sendEmail', async(req, res) => {
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'haneettest@gmail.com',
+          pass: 'Haneet@Test123'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'haneettest@gmail.com',
+        to: 'haneet555@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          res.json({result: `Message with ID: ${error} added.`});
+        } else {
+          res.json({result: `True`});
+        }
+      });
+
+      res.json({result: `Done My Job`});
+      });
+
   const isValidUser = async (req) => {
 
    let result = await admin.auth()
@@ -414,14 +444,47 @@ else{
 
  });
  /************SendLabDetails************************* */
-
-
-
  //app.disable("x-powered-by");
 
  app.get('/yes', (req, res) => {
   res.send('Hello World!')
 })
+// Mask the global 'window' for this snippet file
+/*const window = {
+  recaptchaVerifier: undefined
+};
+
+window.recaptchaVerifier = authFirebase.RecaptchaVerifier('sign-in-button', {
+  'size': 'invisible',
+  'callback': (response) => {
+    // reCAPTCHA solved, allow signInWithPhoneNumber.
+    onSignInSubmit();
+  }
+});
+
+function onSignInSubmit() {
+function phoneSignIn() {
+  function getPhoneNumberFromUserInput() {
+    return "+917293000040";
+  }
+
+  // [START auth_phone_signin]
+  const phoneNumber = getPhoneNumberFromUserInput();
+  const appVerifier = window.recaptchaVerifier;
+  authFirebase.signInWithPhoneNumber(phoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+        // ...
+      }).catch((error) => {
+        // Error; SMS not sent
+        // ...
+      });
+  // [END auth_phone_signin]
+}
+}*/
+
 // This line is important. What we are doing here is exporting ONE function with the name
 // `api` which will always route
 
