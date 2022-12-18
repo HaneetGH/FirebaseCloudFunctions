@@ -296,7 +296,7 @@ else{
   });
     });
 
-    app.get('/sendEmail', async(req, res) => {
+app.get('/sendVerificationEmail', async(req, res) => {
 
       var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -309,7 +309,7 @@ else{
       var mailOptions = {
         from: 'haneettest@gmail.com',
         to: req.query.email,
-        subject: 'Sending Email using Node.js',
+        subject: 'TechnoRapper ChatBot Message',
         text: 'Your verification code is '+ req.query.code
       };
 
@@ -320,7 +320,35 @@ else{
           res.json({result: `True`});
         }
       });
+
       });
+
+app.get('/sendEmail', async(req, res) => {
+
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'haneettest@gmail.com',
+            pass: 'ohummlmnedvgwkbb'
+          }
+        });
+        
+        var mailOptions = {
+          from: 'haneettest@gmail.com',
+          to: req.query.email,
+          subject: 'TechnoRapper ChatBot Message',
+          text: req.query.msg
+        };
+  
+       await transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            res.json({result: `Message with ID: ${error} added.`});
+          } else {
+            res.json({result: `True`});
+          }
+        });
+        
+        });
 
   const isValidUser = async (req) => {
 
@@ -401,6 +429,7 @@ const writeResult =  dbConnection.collection(DOCUMENTS.TEST).doc(req.query.labId
   }
   return res.json({result: response});
 });;
+
 
 // Send back a message that we've successfully written the message
 var response={
