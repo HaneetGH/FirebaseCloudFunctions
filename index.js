@@ -30,6 +30,7 @@ const admin = require('firebase-admin');
 const firebase = require("firebase/app")
 const authFirebase = require("firebase/auth")
 const mConfig = require("./config")
+const mCred = require("./cred")
 //const mConstants = require("./constants")
 admin.initializeApp(mConfig.firebaseConfig);
 const dbConnection = admin.firestore()
@@ -301,13 +302,13 @@ app.get('/sendVerificationEmail', async(req, res) => {
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'haneettest@gmail.com',
-          pass: 'ohummlmnedvgwkbb'
+          user: mCred.BASE_EMAIL,
+          pass: mCred.BASE_EMAIL_PASS
         }
       });
       
       var mailOptions = {
-        from: 'haneettest@gmail.com',
+        from: mCred.BASE_EMAIL,
         to: req.query.email,
         subject: 'TechnoRapper ChatBot Message',
         text: 'Your verification code is '+ req.query.code
@@ -328,13 +329,13 @@ app.get('/sendEmail', async(req, res) => {
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'haneettest@gmail.com',
-            pass: 'ohummlmnedvgwkbb'
+            user: mCred.BASE_EMAIL,
+          pass: mCred.BASE_EMAIL_PASS
           }
         });
         
         var mailOptions = {
-          from: 'haneettest@gmail.com',
+          from: mCred.BASE_EMAIL,
           to: req.query.email,
           subject: 'TechnoRapper ChatBot Message',
           text: req.query.msg
